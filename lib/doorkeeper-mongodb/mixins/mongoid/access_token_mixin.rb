@@ -419,7 +419,8 @@ module DoorkeeperMongodb
 
           return generator if generator.respond_to?(:generate)
 
-          raise Doorkeeper::Errors::UnableToGenerateToken, "#{generator} does not respond to `.generate`."
+          raise Doorkeeper::Errors::UnableToGenerateToken,
+                "#{generator} does not respond to `.generate`."
         rescue NameError
           raise Doorkeeper::Errors::TokenGeneratorNotFound, "#{generator_name} not found"
         end

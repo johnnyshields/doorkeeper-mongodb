@@ -3,7 +3,7 @@
 require "bundler/setup"
 require "rspec/core/rake_task"
 
-task :load_doorkeeper do
+task load_doorkeeper: :environment do
   `rm -rf spec/`
   `git checkout spec`
   unless Dir.exist?("doorkeeper")
@@ -17,7 +17,7 @@ task :load_doorkeeper do
 end
 
 desc "Update Git submodules."
-task :update_submodules do
+task update_submodules: :environment do
   Rake::Task["load_doorkeeper"].invoke if Dir["doorkeeper/*"].empty?
 
   `git submodule foreach git pull origin master`

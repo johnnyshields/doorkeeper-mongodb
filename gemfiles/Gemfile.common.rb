@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-ENV["RAILS"] ||= "5.0"
-ENV["DOORKEEPER"] ||= "5.0"
-
 source "https://rubygems.org"
 
 gemspec path: "../"
 
-gem "rails", "~> #{ENV["RAILS"]}"
-gem "doorkeeper", "~> #{ENV["DOORKEEPER"]}"
+gem 'rails', "~> #{ENV.fetch('RAILS', '5.0')}"
+gem 'doorkeeper', "~> #{ENV.fetch('DOORKEEPER', '.5.0')}"
 gem "bcrypt"
 
 gem "rspec-core"

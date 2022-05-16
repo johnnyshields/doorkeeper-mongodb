@@ -242,7 +242,7 @@ module DoorkeeperMongodb
         end
 
         def generate_secret
-          return unless secret.blank?
+          return if secret.present?
 
           @raw_secret = UniqueToken.generate
           secret_strategy.store_secret(self, :secret, @raw_secret)
@@ -250,7 +250,8 @@ module DoorkeeperMongodb
 
         def scopes_match_configured
           if scopes.present? &&
-             !ScopeChecker.valid?(scope_str: scopes.to_s, server_scopes: Doorkeeper.configuration.scopes)
+             !ScopeChecker.valid?(scope_str: scopes.to_s,
+                                  server_scopes: Doorkeeper.configuration.scopes,)
             errors.add(:scopes, :not_match_configured)
           end
         end

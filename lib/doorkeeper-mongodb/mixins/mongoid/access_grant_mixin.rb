@@ -36,7 +36,8 @@ module DoorkeeperMongodb
             belongs_to :resource_owner, polymorphic: true
           end
 
-          validates :resource_owner_id, :application_id, :token, :expires_in, :redirect_uri, presence: true
+          validates :resource_owner_id, :application_id, :token, :expires_in, :redirect_uri,
+                    presence: true
           validates :token, uniqueness: true
 
           before_validation :generate_token, on: :create
@@ -129,9 +130,7 @@ module DoorkeeperMongodb
             padded_result.split("=")[0] # Remove any trailing '='
           end
 
-          def pkce_supported?
-            new.pkce_supported?
-          end
+          delegate :pkce_supported?, to: :new
 
           ##
           # Determines the secret storing transformer
