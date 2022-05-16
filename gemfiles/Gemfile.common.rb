@@ -4,8 +4,8 @@ source "https://rubygems.org"
 
 gemspec path: "../"
 
-gem 'rails', "~> #{ENV.fetch('RAILS', '5.0')}"
-gem 'doorkeeper', "~> #{ENV.fetch('DOORKEEPER', '.5.0')}"
+gem "rails", "~> #{ENV.fetch("RAILS", "5.0")}"
+gem "doorkeeper", "~> #{ENV.fetch("DOORKEEPER", ".5.0")}"
 gem "bcrypt"
 
 gem "rspec-core"
